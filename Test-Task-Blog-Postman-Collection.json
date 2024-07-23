@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "e4f8cf4e-1564-4717-a3b8-70061832299a",
+		"name": "blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21972286"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"testuser6\",\n    \"email\":\"testuser6@yopmail.com\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/signup/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test5\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/login/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Blog post create and post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE1ODA2LCJpYXQiOjE3MjE3MTIyMDYsImp0aSI6IjVhMmJkYmM4NDU4NjQyNzE5MTk3MzM4ZmExMjMwZDg2IiwidXNlcl9pZCI6Mn0.rGyBprZfN0WPNJvph4BeN1NxNtFxwxYDrr9WRcKA1eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"test post for delete\",\n    \"content\": \"this is my test delete post\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE1ODA2LCJpYXQiOjE3MjE3MTIyMDYsImp0aSI6IjVhMmJkYmM4NDU4NjQyNzE5MTk3MzM4ZmExMjMwZDg2IiwidXNlcl9pZCI6Mn0.rGyBprZfN0WPNJvph4BeN1NxNtFxwxYDrr9WRcKA1eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/5/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						"5",
+						""
+					]
+				},
+				"description": "Add post id in params get post result"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE1ODA2LCJpYXQiOjE3MjE3MTIyMDYsImp0aSI6IjVhMmJkYmM4NDU4NjQyNzE5MTk3MzM4ZmExMjMwZDg2IiwidXNlcl9pZCI6Mn0.rGyBprZfN0WPNJvph4BeN1NxNtFxwxYDrr9WRcKA1eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"this is my first updated title\",\n    \"content\": \"this is my first updated Updated Content\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/1/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE1ODA2LCJpYXQiOjE3MjE3MTIyMDYsImp0aSI6IjVhMmJkYmM4NDU4NjQyNzE5MTk3MzM4ZmExMjMwZDg2IiwidXNlcl9pZCI6Mn0.rGyBprZfN0WPNJvph4BeN1NxNtFxwxYDrr9WRcKA1eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/6/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						"6",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like Post and Unlike",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE1ODA2LCJpYXQiOjE3MjE3MTIyMDYsImp0aSI6IjVhMmJkYmM4NDU4NjQyNzE5MTk3MzM4ZmExMjMwZDg2IiwidXNlcl9pZCI6Mn0.rGyBprZfN0WPNJvph4BeN1NxNtFxwxYDrr9WRcKA1eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/1/like/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						"1",
+						"like",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List or Create Comments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIxNzE5NDQ5LCJpYXQiOjE3MjE3MTU4NDksImp0aSI6IjdmNGQ5ODE4NGVhYzRkYzJhNjlhODZhM2EwNmM0ZWI1IiwidXNlcl9pZCI6Mn0.7-qy_SWeBcGiFrkDeZwPIOwaIvJsLqIX3ZJSizgDei0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"This is my second comment\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BLOG-BASE-URL}}/posts/1/comments/",
+					"host": [
+						"{{BLOG-BASE-URL}}"
+					],
+					"path": [
+						"posts",
+						"1",
+						"comments",
+						""
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

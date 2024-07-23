@@ -1,28 +1,27 @@
-from rest_framework import serializers
 from .models import Post, Comment
+from rest_framework import serializers
 from django.contrib.auth.models import User
 
 class PostSerializer(serializers.ModelSerializer):
+    total_likes = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ["id","title","content","total_likes"]
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = '__all__'
-
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-
+        fields = ["id","text"]
+        
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'password', 'email')
+        fields = ('username', 'email', 'password')
+        extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            password=validated_data['password'],
-            email=validated_data['email']
-        )
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
         return user

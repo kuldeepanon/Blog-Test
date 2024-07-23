@@ -1,13 +1,15 @@
-from django.urls import path
-from .views import PostListCreate, PostRetrieveUpdateDestroy, CommentListCreate,UserRegistrationView
-from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView)
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import PostViewSet, CommentViewSet, UserSignupView
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+router = DefaultRouter()
+router.register(r'posts', PostViewSet)
 
 urlpatterns = [
-    path('posts/', PostListCreate.as_view(), name='post-list-create'),
-    path('posts/<int:pk>/', PostRetrieveUpdateDestroy.as_view(), name='post-detail'),
-    path('posts/<int:post_pk>/comments/', CommentListCreate.as_view(), name='comment-list-create'),
-    path('signup/', UserRegistrationView.as_view(), name='user-signup'),
+    path('', include(router.urls)),
+    path('posts/<int:post_id>/comments/', CommentViewSet.as_view({'get': 'list', 'post': 'create'})),
+    path('posts/<int:pk>/like/', PostViewSet.as_view({'post': 'like_post'}), name='like-post'),
+    path('signup/', UserSignupView.as_view(), name='user-signup'),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-
